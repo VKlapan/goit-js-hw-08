@@ -1,3 +1,5 @@
+import { throttle } from 'lodash';
+
 const formEl = document.querySelector('.feedback-form');
 const emailInputEl = formEl.querySelector('input[name="email"]');
 const msgInputEl = formEl.querySelector('textarea[name="message"]');
@@ -20,15 +22,12 @@ const onSubmit = event => {
 
 const fillInForm = event => {
   currentFeedbackFormState[event.target.name] = event.target.value;
-  console.log(currentFeedbackFormState);
 
   localStorage.setItem(
     'feedback-form-state',
     JSON.stringify(currentFeedbackFormState)
   );
-
-  console.log(localStorage.getItem('feedback-form-state'));
 };
 
 btnSubmitEl.addEventListener('click', onSubmit);
-formEl.addEventListener('input', fillInForm);
+formEl.addEventListener('input', throttle(fillInForm, 500));
