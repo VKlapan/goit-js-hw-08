@@ -5,7 +5,9 @@ const vPlayerEl = document.querySelector('#vimeo-player');
 
 const player = new Player(vPlayerEl);
 
-let currentPlayTime = localStorage.getItem('videoplayer-current-time');
+let currentPlayTime = localStorage.getItem('videoplayer-current-time')
+  ? localStorage.getItem('videoplayer-current-time')
+  : 0;
 
 //console.log(currentPlayTime);
 
